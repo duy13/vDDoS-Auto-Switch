@@ -30,11 +30,6 @@ if [ "$Issetting" != "" ] && [ "$1" != "" ] && [ "$2" != "" ]; then
 	switch_to_mode="$2"
 fi
 
-if [ "$Issetting" = "" ]; then
-	Website="$1"
-	switch_to_mode=`awk -F: '/^SecuritySwitchIfMax/' /vddos/auto-switch/setting.conf | awk 'NR==1 {print $2}'`  ;
-fi
-
 function showerror()
 {
 echo 'ERROR!

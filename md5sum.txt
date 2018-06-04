@@ -1,4 +1,4 @@
 0052d80368cbf4a4a6880609c70ee118  cron.sh
 aa4c752b85d101929237473af66be283  md5sum.txt
 2d880b901e8090903bfc77c31ac84632  README.md
-735cd6988e4180a0bd0831fd10fc251f  vddos-switch.sh
+be4308b32b27d2fa5aba861ac1539eec  vddos-switch.sh
