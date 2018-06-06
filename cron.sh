@@ -105,12 +105,12 @@ if [ "$Command" = "checkdomain" ]; then
 			echo '- Re-check: ['$Website'] is already ['$WebsiteSecurityModeCurrent'] security mode ===> Skip!'|tee -a /vddos/auto-switch/log.txt
 		fi
 		if [ "$WebsiteSecurityModeCurrent" != "$Security_mode" ]; then
-			websitestatus=`curl --connect-timeout 2 --max-time 2 -s -o /dev/null -I -w "%{http_code}" $Website | awk '{print substr($0,1,1)}'`
-			if [ "$websitestatus" != "2" ] && [ "$websitestatus" != "3" ]; then
+			websitestatus=`curl --connect-timeout 2 --max-time 2 -s -o /dev/null -L -I -w "%{http_code}" $Website | awk '{print substr($0,1,1)}'`
+			if [ "$websitestatus" != "2" ]; then
 				echo ' Found ['$Website'] in /vddos/conf.d/website.conf seems to be in the offline state: ['$websitestatus'xx']|tee -a /vddos/auto-switch/log.txt
 				/usr/bin/vddos-switch $Website $Security_mode
 			fi
-			if [ "$websitestatus" = "2" ] || [ "$websitestatus" = "3" ]; then
+			if [ "$websitestatus" = "2" ]; then
 				echo '- Re-check: ['$Website'] seems to be in the online state: ['$websitestatus'xx] ===> Skip!'|tee -a /vddos/auto-switch/log.txt
 			fi
 		fi
@@ -160,12 +160,12 @@ if [ "$Command" = "checklist" ]; then
 			fi
 			if [ "$WebsiteSecurityModeCurrent" != "$Security_mode" ]; then
 				if [ "$Available" != "" ]; then
-					websitestatus=`curl --connect-timeout 2 --max-time 2 -s -o /dev/null -I -w "%{http_code}" $Website | awk '{print substr($0,1,1)}'`
-					if [ "$websitestatus" != "2" ] && [ "$websitestatus" != "3" ]; then
+					websitestatus=`curl --connect-timeout 2 --max-time 2 -s -o /dev/null -L -I -w "%{http_code}" $Website | awk '{print substr($0,1,1)}'`
+					if [ "$websitestatus" != "2" ]; then
 						echo ' Found ['$Website'] in '$listdomains_source' seems to be in the offline state: ['$websitestatus'xx']|tee -a /vddos/auto-switch/log.txt
 						/usr/bin/vddos-switch $Website $Security_mode
 					fi
-					if [ "$websitestatus" = "2" ] || [ "$websitestatus" = "3" ]; then
+					if [ "$websitestatus" = "2" ]; then
 						echo '- Re-check: ['$Website'] seems to be in the online state: ['$websitestatus'xx] ===> Skip!'|tee -a /vddos/auto-switch/log.txt
 					fi
 				fi
