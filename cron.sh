@@ -229,7 +229,7 @@ if [ "$Command" = "flushalldomain" ]; then
 	echo "
 		[[[[[[[ `date` ]]]]]]]
 	" > /vddos/auto-switch/log.txt
-	echo "`cat $listdomains_source | grep .|grep -v '^#'|grep -v '^*' | awk '!x[$0]++'`" > $listdomains
+	echo "`cat $listdomains_source | grep .|grep -v '^#'|grep -v '^*' | awk '{print $1}'| awk '!x[$0]++'`" > $listdomains
 	numberlinelistdomains=`cat $listdomains | grep . | wc -l`
 	startlinenumber=1
 
