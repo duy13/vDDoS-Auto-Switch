@@ -117,7 +117,7 @@ if [ "$Command" = "checkdomain" ]; then
 	fi
 	md5sum_website_conf_new=`cat /vddos/conf.d/website.conf| grep . | awk '!x[$0]++'| md5sum | awk 'NR==1 {print $1}'`
 	if [ "$md5sum_website_conf_latest" != "$md5sum_website_conf_new" ]; then
-		/usr/bin/vddos restart |tee -a /vddos/auto-switch/log.txt
+		/usr/bin/vddos reload |tee -a /vddos/auto-switch/log.txt
 	fi
 	checklog
 	exit 0
@@ -176,7 +176,7 @@ if [ "$Command" = "checklist" ]; then
 
 	md5sum_website_conf_new=`cat /vddos/conf.d/website.conf| grep . | awk '!x[$0]++'| md5sum | awk 'NR==1 {print $1}'`
 	if [ "$md5sum_website_conf_latest" != "$md5sum_website_conf_new" ]; then
-		/usr/bin/vddos restart |tee -a /vddos/auto-switch/log.txt
+		/usr/bin/vddos reload |tee -a /vddos/auto-switch/log.txt
 	fi
 	checklog
 	exit 0
@@ -257,7 +257,7 @@ if [ "$Command" = "flushalldomain" ]; then
 
 	md5sum_website_conf_new=`cat /vddos/conf.d/website.conf| grep . | awk '!x[$0]++'| md5sum | awk 'NR==1 {print $1}'`
 	if [ "$md5sum_website_conf_latest" != "$md5sum_website_conf_new" ]; then
-		/usr/bin/vddos restart |tee -a /vddos/auto-switch/log.txt
+		/usr/bin/vddos reload |tee -a /vddos/auto-switch/log.txt
 	fi
 	checklog
 	exit 0
