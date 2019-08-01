@@ -160,7 +160,7 @@ if [ "$Command" = "checklist" ]; then
 			fi
 			if [ "$WebsiteSecurityModeCurrent" != "$Security_mode" ]; then
 				if [ "$Available" != "" ]; then
-					websitestatus=`/usr/bin/vddos reload --connect-timeout 2 --max-time 2 -s -o /dev/null -L -I -w "%{http_code}" $Website | awk '{print substr($0,1,1)}'`
+					websitestatus=`curl --user-agent "vDDos Auto Switch Check" --connect-timeout 2 --max-time 2 -s -o /dev/null -L -I -w "%{http_code}" $Website | awk '{print substr($0,1,1)}'`
 					if [ "$websitestatus" != "2" ]; then
 						echo ' Found ['$Website'] in '$listdomains_source' seems to be in the offline state: ['$websitestatus'xx']|tee -a /vddos/auto-switch/log.txt
 						/usr/bin/vddos-switch $Website $Security_mode
